@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel Carvalho Santos — Portfólio de Engenharia (Moldes e Protótipos) &amp; TI</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        pastel: {
+                            blue: '#38bdf8',
+                            'blue-light': '#f0f9ff',
+                            'blue-border': '#bae6fd',
+                            'blue-dark': '#0284c7',
+                            green: '#34d399',
+                            'green-light': '#ecfdf5',
+                            'green-border': '#a7f3d0',
+                            'green-dark': '#059669',
+                            slate: '#64748b',
+                            dark: '#0f172a',
+                            bg: '#f8fafc',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS Grid Overlay & Glassmorphism -->
+    <style>
+        .tech-grid-pattern {
+            background-color: #ffffff;
+            background-image: 
+                linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+
+        .glass-header {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border: 1px solid #e2e8f0;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #38bdf8;
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-1000 font-sans antialiased selection:bg-sky-200 selection:text-sky-900">
+
+    <!-- NAVBAR -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-header border-b border-slate-200/80 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <a href="#hero" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-400 to-emerald-400 text-white font-mono font-bold flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                        GC
+                    </div>
+                    <div>
+                        <span class="block text-base font-heading font-bold text-slate-900 tracking-tight leading-none">Gabriel Carvalho Santos</span>
+                        <span class="block text-[11px] font-mono text-slate-500 font-medium mt-1">Engenharia • Moldes • Protótipos • TI</span>
+                    </div>
+                </a>
+
+                <nav class="hidden lg:flex items-center gap-8 text-xs font-semibold tracking-wider uppercase text-slate-600">
+                    <a href="#about" class="hover:text-sky-600 transition-colors">Sobre</a>
+                    <a href="#cad-cnc" class="hover:text-sky-600 transition-colors">CAD &amp; Moldes</a>
+                    <a href="#workflow" class="hover:text-sky-600 transition-colors">Workflow técnico</a>
+                    <a href="#ti-infra" class="hover:text-sky-600 transition-colors">TI &amp; Redes</a>
+                    <a href="#code" class="hover:text-sky-600 transition-colors">Dev &amp; Software</a>
+                    <a href="#gallery" class="hover:text-sky-600 transition-colors">Galeria</a>
+                    <a href="#clientes" class="hover:text-sky-600 transition-colors">Clientes</a>
+                </nav>
+
+                <div class="hidden sm:flex items-center gap-3">
+                    <a href="#contact" class="px-5 py-2.5 rounded-xl text-xs font-heading font-semibold uppercase tracking-wider text-white bg-slate-900 hover:bg-sky-600 transition-all shadow-sm flex items-center gap-2">
+                        <i class="fa-solid fa-paper-plane text-emerald-400"></i> Falar Comigo
+                    </a>
+                </div>
+
+                <button id="mobileMenuBtn" class="lg:hidden p-2 text-slate-600 hover:text-slate-900 rounded-lg border border-slate-200">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden lg:hidden border-b border-slate-200 bg-white px-4 pt-2 pb-6 space-y-3 font-medium text-sm">
+            <a href="#about" class="block py-2 text-slate-600 border-b border-slate-100">Sobre Mim</a>
+            <a href="#cad-cnc" class="block py-2 text-slate-600 border-b border-slate-100">CAD 3D &amp; Moldes CNC</a>
+            <a href="#workflow" class="block py-2 text-slate-600 border-b border-slate-100">Workflow 3D $\rightarrow$ CNC</a>
+            <a href="#ti-infra" class="block py-2 text-slate-600 border-b border-slate-100">TI &amp; Redes</a>
+            <a href="#code" class="block py-2 text-slate-600 border-b border-slate-100">Dev &amp; Dados</a>
+            <a href="#gallery" class="block py-2 text-slate-600 border-b border-slate-100">Galeria de Processos</a>
+            <a href="#clientes" class="block py-2 text-slate-600 border-b border-slate-100">Clientes Atendidos</a>
+            <a href="#contact" class="block py-3 text-center bg-sky-500 text-white rounded-lg uppercase text-xs font-bold mt-2">Falar Comigo</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative pt-32 pb-16 lg:pt-40 lg:pb-24 tech-grid-pattern border-b border-slate-200 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 font-mono text-xs font-semibold">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            4 Anos em Atuação Remota
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sky-50 border border-sky-200 text-sky-700 font-mono text-xs font-semibold">
+                            <i class="fa-solid fa-cube text-sky-500"></i> SolidWorks • Rhino • CNC
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 font-mono text-xs font-semibold">
+                            <i class="fa-solid fa-network-wired text-slate-500"></i> TI, Redes &amp; SysAdmin
+                        </span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl font-heading font-extrabold text-slate-900 tracking-tight leading-tight">
+                        Engenharia de <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-emerald-500">Moldes, Protótipos</span> &amp; Infraestrutura de TI
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
+                        Unindo a precisão tridimensional da modelagem sólida e superfícies no SolidWorks/Rhino com usinagem CNC, aliada à gestão completa de redes corporativas, servidores e suporte tecnológico remoto.
+                    </p>
+
+                    <!-- Main Category Switcher Strip -->
+                    <div class="pt-2">
+                        <span class="block text-xs font-mono text-slate-500 uppercase tracking-wider mb-2 font-semibold">Visualizar por Especialidade:</span>
+                        <div class="flex flex-wrap gap-2 text-xs font-medium" id="heroFilters">
+                            <button onclick="filterMainCategory('all')" class="hero-filter-btn active px-3.5 py-1.5 rounded-lg bg-slate-900 text-white transition-all">Visão Geral Integrada</button>
+                            <button onclick="filterMainCategory('cad')" class="hero-filter-btn px-3.5 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-sky-50 hover:text-sky-700 transition-all">CAD, SolidWorks &amp; Moldes CNC</button>
+                            <button onclick="filterMainCategory('it')" class="hero-filter-btn px-3.5 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-emerald-50 hover:text-emerald-700 transition-all">Infraestrutura de TI &amp; Redes</button>
+                            <button onclick="filterMainCategory('dev')" class="hero-filter-btn px-3.5 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 transition-all">Programação &amp; Software</button>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <a href="https://wa.me/5516981221827" class="px-6 py-3.5 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-heading font-semibold text-sm tracking-wide shadow-md hover:shadow-lg transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-comments"></i> Iniciar Contato Direto
+                        </a>
+                        <a href="#gallery" class="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 font-heading font-semibold text-sm tracking-wide shadow-sm transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-images text-emerald-600"></i> Ver Galeria de Processos
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Interactive Tech Panel -->
+                <div class="lg:col-span-5">
+                    <div class="glass-card rounded-2xl p-6 shadow-xl space-y-4 border border-slate-200">
+                        <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-rose-400 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block"></span>
+                            </div>
+                            <span class="font-mono text-xs font-semibold text-slate-500">gabriel-santos.sys</span>
+                        </div>
+
+                        <div class="font-mono text-xs space-y-3 leading-relaxed">
+                            <div class="p-3 rounded-lg bg-sky-50 border border-sky-200 text-slate-800">
+                                <span class="text-sky-700 font-bold">[CAD / MOLDES CNC]</span> Modelagem Sólida SolidWorks, Rhino 3D, Fechamento de Superfícies, Seccionamento e Usinagem.
+                            </div>
+                            <div class="p-3 rounded-lg bg-emerald-50 border border-emerald-200 text-slate-800">
+                                <span class="text-emerald-700 font-bold">[TI &amp; REDES]</span> Mapeamento de Redes, Regras de Navegação/Firewall, Servidores, Suporte Remoto N1-N3, PCs e Celulares.
+                            </div>
+                            <div class="p-3 rounded-lg bg-slate-100 border border-slate-200 text-slate-800">
+                                <span class="text-slate-700 font-bold">[DEV &amp; DADOS]</span> Lógica, Python, SQL, HTML/CSS, JS, Java, VB e Pacote Office Completo.
+                            </div>
+                        </div>
+
+                        <div class="pt-2 text-center">
+                            <span class="inline-block text-[11px] font-mono text-slate-600 bg-white px-3 py-1 rounded-full border border-slate-200">
+                                Estrutura: <span class="text-emerald-600 font-bold">100% Remoto (Espaço Home Office Próprio)</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-16 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                <div class="lg:col-span-8 space-y-4">
+                    <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-700 font-mono text-xs font-bold uppercase">Perfil Profissional</span>
+                    <h2 class="text-2xl sm:text-3xl font-heading font-bold text-slate-900">
+                        Multidisciplinaridade Técnica Integrada
+                    </h2>
+                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                        Sou Gabriel Carvalho Santos, profissional multidisciplinar com bagagem técnica sólida em duas frentes tecnológicas essenciais: a <strong>Engenharia de Moldes e protótipos para Usinagem CNC</strong> e a <strong>Infraestrutura de Tecnologia da Informação, Redes e Suporte de Sistemas</strong>.
+                    </p>
+                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                        No segmento de modelagem CAD, possuo expertise na conversão e tratamento de superfícies vindas do Rhinoceros para o SolidWorks, realizando fechamento estanque de superfícies, transformação em modelos sólidos e o seccionamento de moldes em blocos otimizados para usinagem.
+                    </p>
+                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                        A relevância de projetos náuticos e brinquedos/lazer infantil em meu acervo é fruto da especialização das empresas onde atuei, mas <strong>minha capacidade de desenvolvimento no SolidWorks abrange todos os segmentos industrias</strong> (peças mecânicas, compósitos, automotivo e equipamentos gerais).
+                    </p>
+                </div>
+
+                <div class="lg:col-span-4 bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-4">
+                    <h3 class="font-heading font-bold text-slate-900 text-base border-b border-slate-200 pb-2">Resumo Operacional</h3>
+                    <ul class="text-xs space-y-2.5 text-slate-600 font-mono">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> 4 Anos de Experiência Remota</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Estação Home Office Própria</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Moldes e Protótipos</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Mapeamento de Redes &amp; Firewalls</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Suporte N1-N3 / PCs e Celulares</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Python, SQL, JS, HTML/CSS, VB</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION AREA 1: CAD 3D, SOLIDWORKS & MOLDES CNC -->
+    <section id="cad-cnc" class="py-20 bg-slate-50/60 border-b border-slate-200 main-category-section" data-main-cat="cad">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex items-center gap-3 mb-3">
+                <span class="px-3 py-1 rounded-full bg-sky-100 text-sky-800 font-mono text-xs font-bold uppercase">Área 01</span>
+                <span class="text-xs font-mono text-slate-500">Modelagem Tridimensional &amp; Fabricação</span>
+            </div>
+
+            <h2 class="text-2xl sm:text-3xl font-heading font-bold text-slate-900 mb-4">
+                Modelagem 3D no SolidWorks e Rhinoceros para moldes e protótipos.
+            </h2>
+            <p class="text-slate-600 text-sm sm:text-base max-w-3xl mb-8">
+                Desenvolvimento completo de moldes com foco na precisão dimensional, fechamento de cascas de superfícies e divisão técnica em blocos para fabricaçãoF.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-shapes"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-slate-900 text-base mb-2">Tratamento de Superfícies</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Análise de arquivos matemáticos do Rhinoceros, remoção de bordas abertas, correção de tangências e conversão estanque em sólido no SolidWorks.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-cubes-stacked"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-slate-900 text-base mb-2">Blocagem/h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Seccionamento inteligente de moldes em blocos, otimizando a área útil da mesa CNC e evitando desperdício de matéria-prima.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-industry"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-slate-900 text-base mb-2">Versatilidade Industrial Abrangente</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Prática comprovada em moldes náuticos, brinquedos recreativos/infantis e prontidão para desenvolver qualquer projeto mecânico ou industrial no SolidWorks.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Material Technical Note -->
+            <div class="p-5 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-xs leading-relaxed flex items-start gap-3">
+                <i class="fa-solid fa-circle-info text-amber-600 text-base mt-0.5"></i>
+                <div>
+                    <strong>Especificação de Materiais &amp; Confidencialidade:</strong> Toda a usinagem e preparação de blocos apresentada refere-se estritamente ao processamento de construção do modelo e molde. As fotografias do acervo focam exclusivamente na engenharia de processo e fabricação, mantendo o sigilo rigoroso das marcas e modelos.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- WORKFLOW STEPPER -->
+    <section id="workflow" class="py-20 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="px-3 py-1 rounded-full bg-sky-100 text-sky-800 font-mono text-xs font-bold uppercase">Workflow Técnico</span>
+                <h2 class="text-2xl sm:text-3xl font-heading font-bold text-slate-900 mt-2">
+                    Metodologia: Da Geometria ao Molde/Modelo.
+                </h2>
+                <p class="text-slate-600 text-sm mt-2">
+                    Clique abaixo para visualizar cada passo do processo de conversão e preparação.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-8" id="workflowStepper">
+                <button onclick="setWorkflowStep(1)" class="step-btn active p-3 rounded-xl border text-left transition-all bg-sky-500 text-white border-sky-500">
+                    <span class="block font-mono text-[10px] uppercase font-bold text-sky-100">Passo 01</span>
+                    <span class="font-heading font-bold text-xs">01. Recebimento Rhino</span>
+                </button>
+                <button onclick="setWorkflowStep(2)" class="step-btn p-3 rounded-xl border border-slate-200 text-left transition-all bg-white text-slate-700 hover:bg-slate-50">
+                    <span class="block font-mono text-[10px] uppercase font-bold text-slate-400">Passo 02</span>
+                    <span class="font-heading font-bold text-xs">02. Reparo SolidWorks</span>
+                </button>
+                <button onclick="setWorkflowStep(3)" class="step-btn p-3 rounded-xl border border-slate-200 text-left transition-all bg-white text-slate-700 hover:bg-slate-50">
+                    <span class="block font-mono text-[10px] uppercase font-bold text-slate-400">Passo 03</span>
+                    <span class="font-heading font-bold text-xs">03. Solidificação</span>
+                </button>
+                <button onclick="setWorkflowStep(4)" class="step-btn p-3 rounded-xl border border-slate-200 text-left transition-all bg-white text-slate-700 hover:bg-slate-50">
+                    <span class="block font-mono text-[10px] uppercase font-bold text-slate-400">Passo 04</span>
+                    <span class="font-heading font-bold text-xs">04. Seccionamento</span>
+                </button>
+                <button onclick="setWorkflowStep(5)" class="step-btn p-3 rounded-xl border border-slate-200 text-left transition-all bg-white text-slate-700 hover:bg-slate-50">
+                    <span class="block font-mono text-[10px] uppercase font-bold text-slate-400">Passo 05</span>
+                    <span class="font-heading font-bold text-xs">05. Usinagem e Montagem</span>
+                </button>
+            </div>
+
+            <div id="workflowContent" class="p-6 sm:p-8 rounded-2xl bg-slate-50 border border-slate-200 grid md:grid-cols-12 gap-6 items-center">
+                <div class="md:col-span-7 space-y-3">
+                    <span id="stepBadge" class="inline-block px-2.5 py-1 rounded bg-sky-100 text-sky-800 font-mono text-xs font-bold">ETAPA 01 / 05</span>
+                    <h3 id="stepTitle" class="text-xl font-heading font-bold text-slate-900">01. Recebimento e Diagnóstico Geométrico no Rhinoceros</h3>
+                    <p id="stepDesc" class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        Recepção do arquivo tridimensional original. Análise detalhada das superfícies, inspeção de bordas descontinuas e identificação de gaps na malha matemática.
+                    </p>
+                </div>
+                <div class="md:col-span-5">
+                    <div class="p-6 rounded-xl bg-white border border-slate-200 text-center space-y-2 shadow-sm">
+                        <i id="stepIcon" class="fa-solid fa-cube text-5xl text-sky-500"></i>
+                        <span id="stepTechnicalLabel" class="block font-mono text-xs text-slate-600 font-semibold pt-2">Inspeção de Malha e Superfícies</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION AREA 2: TI, REDES & SERVIDORES -->
+    <section id="ti-infra" class="py-20 bg-slate-50/60 border-b border-slate-200 main-category-section" data-main-cat="it">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex items-center gap-3 mb-3">
+                <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-mono text-xs font-bold uppercase">Área 02</span>
+                <span class="text-xs font-mono text-slate-500">Tecnologia da Informação &amp; Infraestrutura</span>
+            </div>
+
+            <h2 class="text-2xl sm:text-3xl font-heading font-bold text-slate-900 mb-4">
+                Infraestrutura de TI, Redes &amp; Manutenção de Servidores
+            </h2>
+            <p class="text-slate-600 text-sm sm:text-base max-w-3xl mb-10">
+                Experiência prática no gerenciamento de ambientes de TI, segurança de rede, suporte técnico especializado a usuários e manutenção de hardware.
+            </p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-sitemap"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-slate-900 text-base mb-2">Mapeamento de Redes</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                        Elaboração de diagramas de infraestrutura, organização de cabeamento estruturado, configuração de sub-redes e controle de endereçamento IP.
+                    </p>
+                    <button onclick="openDetailModal('Mapeamento de Redes', 'Definição de topologia física e lógica, identificação de gargalos de comunicação, documentação de pontos de rede e estruturação de Racks.')" class="text-xs font-semibold text-sky-600 hover:underline">Detalhes técnicos $\rightarrow$</button>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-slate-900 text-base mb-2">Mapeamento &amp; Regras de Servidores</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                        Administração de diretórios compartilhados, mapeamento de unidades de rede por setor, criação de grupos de permissão e manutenção.
+                    </p>
+                    <button onclick="openDetailModal('Gestão de Servidores', 'Configuração de políticas de compartilhamento seguro, regras de acesso por nível hierárquico, permissões NTFS e rotinas de manutenção em servidores.')" class="text-xs font-semibold text-emerald-600 hover:underline">Detalhes técnicos $\rightarrow$</button>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-slate-900 text-base mb-2">Regras de Navegação &amp; Firewall</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                        Implementação de políticas de segurança na web, bloqueio de domínios nocivos, priorização de tráfego de dados e controle de banda.
+                    </p>
+                    <button onclick="openDetailModal('Regras de Navegação', 'Criação de filtros de conteúdo corporativo, controle de uso de banda por departamento e estabelecimento de regras de segurança no Firewall.')" class="text-xs font-semibold text-slate-700 hover:underline">Detalhes técnicos $\rightarrow$</button>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-computer"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-slate-900 text-base mb-2">Montagem e Manutenção de PCs</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Montagem física de computadores e servidores, substituição de componentes, formatação, otimização de sistema operacional e limpeza técnica.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-slate-900 text-base mb-2">Manutenção em Celulares</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Diagnóstico e reparos em dispositivos móveis Android e iOS, substituição de telas, baterias, conectores e restauração de software.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-slate-900 text-base mb-2">Suporte Remoto N1, N2 e N3</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Atendimento ágil de chamados técnicos via AnyDesk/TeamViewer, resolução de inconsistências em softwares, impressoras e conectividade.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PROGRAMMING, LANGUAGES & OFFICE -->
+    <section id="code" class="py-20 bg-white border-b border-slate-200 main-category-section" data-main-cat="dev">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex items-center gap-3 mb-3">
+                <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-700 font-mono text-xs font-bold uppercase">Área 03</span>
+                <span class="text-xs font-mono text-slate-500">Desenvolvimento de Software &amp; Automação</span>
+            </div>
+
+            <h2 class="text-2xl sm:text-3xl font-heading font-bold text-slate-900 mb-4">
+                Lógica de Programação, Linguagens &amp; Banco de Dados
+            </h2>
+            <p class="text-slate-600 text-sm sm:text-base max-w-3xl mb-8">
+                Domínio da lógica de desenvolvimento para criação de scripts de automação, consultas a bancos de dados relacionais e auxílio a sistemas.
+            </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 mb-8">
+                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-center">
+                    <i class="fa-brands fa-python text-sky-500 text-2xl mb-1"></i>
+                    <span class="block font-heading font-bold text-xs text-slate-800">Python</span>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-center">
+                    <i class="fa-solid fa-database text-emerald-500 text-2xl mb-1"></i>
+                    <span class="block font-heading font-bold text-xs text-slate-800">SQL</span>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-center">
+                    <i class="fa-brands fa-js text-amber-500 text-2xl mb-1"></i>
+                    <span class="block font-heading font-bold text-xs text-slate-800">JavaScript</span>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-center">
+                    <i class="fa-brands fa-html5 text-orange-500 text-2xl mb-1"></i>
+                    <span class="block font-heading font-bold text-xs text-slate-800">HTML / CSS</span>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-center">
+                    <i class="fa-brands fa-java text-red-500 text-2xl mb-1"></i>
+                    <span class="block font-heading font-bold text-xs text-slate-800">Java</span>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-center">
+                    <i class="fa-solid fa-code text-indigo-500 text-2xl mb-1"></i>
+                    <span class="block font-heading font-bold text-xs text-slate-800">VB / VBA</span>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-center">
+                    <i class="fa-solid fa-gears text-slate-600 text-2xl mb-1"></i>
+                    <span class="block font-heading font-bold text-xs text-slate-800">Lógica</span>
+                </div>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-sky-50/60 border border-sky-200 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <h3 class="font-heading font-bold text-slate-900 text-base mb-1">Pacote Office Completo &amp; Planilhas Avançadas</h3>
+                    <p class="text-xs text-slate-600">
+                        Desenvolvimento de planilhas complexas em Excel com fórmulas dinâmicas, tratamento de textos corporativos no Word e apresentações profissionais no PowerPoint.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2 font-mono text-xs shrink-0">
+                    <span class="px-3 py-1.5 rounded-lg bg-white border border-sky-200 text-emerald-700 font-bold"><i class="fa-solid fa-file-excel"></i> Excel</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-white border border-sky-200 text-sky-700 font-bold"><i class="fa-solid fa-file-word"></i> Word</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-white border border-sky-200 text-orange-700 font-bold"><i class="fa-solid fa-file-powerpoint"></i> PPT</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- GALERIA INTERATIVA (PROCESSOS SIGILOSOS SEM NOMES DE CLIENTES) -->
+    <section id="gallery" class="py-20 bg-slate-50/60 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
+                <div>
+                    <span class="px-3 py-1 rounded-full bg-sky-100 text-sky-800 font-mono text-xs font-bold uppercase">Acervo de Engenharia</span>
+                    <h2 class="text-2xl sm:text-3xl font-heading font-bold text-slate-900 mt-2">
+                        Galeria Técnica de Processos e Fabricação
+                    </h2>
+                    <p class="text-slate-600 text-sm mt-1">
+                        Registros práticos do desenvolvimento de modelos 3D no SolidWorks, seccionamento de blocos de madeira e montagem final de moldes.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap gap-2 mt-4 md:mt-0 text-xs font-medium" id="galleryFilters">
+                    <button onclick="filterGallery('all')" class="gal-filter-btn active px-3 py-1.5 rounded-lg bg-slate-900 text-white">Todos os Registros</button>
+                    <button onclick="filterGallery('cad')" class="gal-filter-btn px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-600">Modelagem &amp; CAD</button>
+                    <button onclick="filterGallery('cnc')" class="gal-filter-btn px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-600">Usinagem em Madeira</button>
+                    <button onclick="filterGallery('mold')" class="gal-filter-btn px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-600">Ajuste &amp; Montagem</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" id="galleryGrid">
+                
+                <!-- Img 1 -->
+                <div class="gallery-card group relative rounded-xl overflow-hidden bg-white border border-slate-200 shadow-sm cursor-pointer" data-gal-cat="cad" onclick="openLightbox('https://lh3.googleusercontent.com/gg/AJWXcNeqXXSQ9CmqDlSc9LZ0pxCBcHFUvMZxeVB-YrZiOTGGaRCowlf5wd0hq6vZAYazpHq5v4PYuXXczHJYUR9tB19BPfTSfZx9hFk5c0zh5H0NdjjSG_Kmtxa0beh3sYfGZ92fITJ-Hr0femdxhTp8hFiH0d8BQxS-zIqUT6s48w1HO7Ir_s1wtNxcTbaOdQ4Az2bPig-sXU_c5Y1Hg437RZ9BIH8Pu1hi5OtkBlIZAWXgm966e92FqeLYc100s2BDlznQuLB-2750ueOaVow58yyQdfAzElIhoNA=s0', 'Modelo CAD 3D seccionado no SolidWorks com divisão em blocos técnicos de usinagem.')">
+                    <img src="https://lh3.googleusercontent.com/gg/AJWXcNeqXXSQ9CmqDlSc9LZ0pxCBcHFUvMZxeVB-YrZiOTGGaRCowlf5wd0hq6vZAYazpHq5v4PYuXXczHJYUR9tB19BPfTSfZx9hFk5c0zh5H0NdjjSG_Kmtxa0beh3sYfGZ92fITJ-Hr0femdxhTp8hFiH0d8BQxS-zIqUT6s48w1HO7Ir_s1wtNxcTbaOdQ4Az2bPig-sXU_c5Y1Hg437RZ9BIH8Pu1hi5OtkBlIZAWXgm966e92FqeLYc100s2BDlznQuLB-2750ueOaVow58yyQdfAzElIhoNA=s0" alt="Seccionamento CAD 3D" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-2.5 bg-white border-t border-slate-100">
+                        <span class="block text-[11px] font-heading font-bold text-slate-800 truncate">Seccionamento CAD no SolidWorks</span>
+                        <span class="block text-[10px] font-mono text-slate-500">Otimização de mesa CNC</span>
+                    </div>
+                </div>
+
+                <!-- Img 2 -->
+                <div class="gallery-card group relative rounded-xl overflow-hidden bg-white border border-slate-200 shadow-sm cursor-pointer" data-gal-cat="cad" onclick="openLightbox('https://lh3.googleusercontent.com/gg/AJWXcNeQiAFtuVKJv56iRWzxDBxVONf9EjG1ITwXnqfQGBTtZZlVH3lnqabIHxuNrrWC9Zbtk0ixFP0bW5XF8OPXtuDiwheUdLUnh3zBTuTMt2oU28tBo_yKmgaKFAbRs8D7MHTJU_bK9x5Wjj5eFBX6sMcmuCagMaRW_HXWXcg65-vmnUZBxsHnOJLrI4tPQuP3v2Dujx7COOvOSKsszPxIaJrPb17ZXO3-A5ilDckabKCjixMSy9HWCJ08RR1CJ_PonxC9zve3Zxa5JVhkSUldqtC8V0fDPRcNUw=s0', 'Mapeamento de cortes e codificação de blocos individuais A-R para projeto de molde.')">
+                    <img src="https://lh3.googleusercontent.com/gg/AJWXcNeQiAFtuVKJv56iRWzxDBxVONf9EjG1ITwXnqfQGBTtZZlVH3lnqabIHxuNrrWC9Zbtk0ixFP0bW5XF8OPXtuDiwheUdLUnh3zBTuTMt2oU28tBo_yKmgaKFAbRs8D7MHTJU_bK9x5Wjj5eFBX6sMcmuCagMaRW_HXWXcg65-vmnUZBxsHnOJLrI4tPQuP3v2Dujx7COOvOSKsszPxIaJrPb17ZXO3-A5ilDckabKCjixMSy9HWCJ08RR1CJ_PonxC9zve3Zxa5JVhkSUldqtC8V0fDPRcNUw=s0" alt="Blocos Codificados CAD" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-2.5 bg-white border-t border-slate-100">
+                        <span class="block text-[11px] font-heading font-bold text-slate-800 truncate">Codificação de Blocos A-R</span>
+                        <span class="block text-[10px] font-mono text-slate-500">Mapeamento sequencial</span>
+                    </div>
+                </div>
+
+                <!-- Img 3 -->
+                <div class="gallery-card group relative rounded-xl overflow-hidden bg-white border border-slate-200 shadow-sm cursor-pointer" data-gal-cat="cnc" onclick="openLightbox('https://lh3.googleusercontent.com/gg/AJWXcNdhFnIqFUU6rUCdzrFiR8qJZlisqCoY--N7UlwgOSkn13ZPg9jeklVM49lj7cyNpnZs3n0ImtTP4e3SSfego2Q3UK8ESbrkY9iNSiEzkDTpoTrn0yGi9gu4mmWfB0_8uYHdIXRkvgPO8vDcyrrUDupcF4LUApAuQyNIbpbTwNkPsNsQJ_mc78G3AHKYwXXwpXZtQysmAZOoi5DbWU0jq10ZmlRhENnYwog5q6ILDszl_EGgF4L6r75JGgg6pQYp4fXfW191GSNPWkRd3EwrB0Th2ZpT16uU7hc=s0', 'Centro de usinagem CNC realizando desbaste técnico de bloco em madeira/MDF.')">
+                    <img src="https://lh3.googleusercontent.com/gg/AJWXcNdhFnIqFUU6rUCdzrFiR8qJZlisqCoY--N7UlwgOSkn13ZPg9jeklVM49lj7cyNpnZs3n0ImtTP4e3SSfego2Q3UK8ESbrkY9iNSiEzkDTpoTrn0yGi9gu4mmWfB0_8uYHdIXRkvgPO8vDcyrrUDupcF4LUApAuQyNIbpbTwNkPsNsQJ_mc78G3AHKYwXXwpXZtQysmAZOoi5DbWU0jq10ZmlRhENnYwog5q6ILDszl_EGgF4L6r75JGgg6pQYp4fXfW191GSNPWkRd3EwrB0Th2ZpT16uU7hc=s0" alt="Usinagem CNC de Madeira" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-2.5 bg-white border-t border-slate-100">
+                        <span class="block text-[11px] font-heading font-bold text-slate-800 truncate">Usinagem CNC em Madeira</span>
+                        <span class="block text-[10px] font-mono text-slate-500">Desbaste de alta precisão</span>
+                    </div>
+                </div>
+
+                <!-- Img 4 -->
+                <div class="gallery-card group relative rounded-xl overflow-hidden bg-white border border-slate-200 shadow-sm cursor-pointer" data-gal-cat="cnc" onclick="openLightbox('https://lh3.googleusercontent.com/gg/AJWXcNdM71r17nb7zWiTk4GT3rAhWrT_eY-cnZWbmjmBXnLh_fSovRiJRpksbdkTQ41bMcmSsqGz70m99toQX2frJg1xfo4lOLQMhZQBCqvJnrYxXksBV74ahRPleiCZ-i5beA5GAsfv0_GSQUIniHuyP7TlGwXTMm3_IdjAMpT31TeZYIUE5oB6g1WVwN5YcY4KUk_V2C0FvFHN5k8C-fjwy6PXfJ_82rWaycmluuRNQymTcevDr5__n-wNNcJC4E-3J8yS2fZXeCeUp3DNeap6puEdk5Am37-K2k=s0', 'Organização de blocos de MDF usinados aproveitando ao máximo a chapa útil.')">
+                    <img src="https://lh3.googleusercontent.com/gg/AJWXcNdM71r17nb7zWiTk4GT3rAhWrT_eY-cnZWbmjmBXnLh_fSovRiJRpksbdkTQ41bMcmSsqGz70m99toQX2frJg1xfo4lOLQMhZQBCqvJnrYxXksBV74ahRPleiCZ-i5beA5GAsfv0_GSQUIniHuyP7TlGwXTMm3_IdjAMpT31TeZYIUE5oB6g1WVwN5YcY4KUk_V2C0FvFHN5k8C-fjwy6PXfJ_82rWaycmluuRNQymTcevDr5__n-wNNcJC4E-3J8yS2fZXeCeUp3DNeap6puEdk5Am37-K2k=s0" alt="Blocos MDF Usinados" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-2.5 bg-white border-t border-slate-100">
+                        <span class="block text-[11px] font-heading font-bold text-slate-800 truncate">Blocos Usinados em MDF</span>
+                        <span class="block text-[10px] font-mono text-slate-500">Aproveitamento de chapa</span>
+                    </div>
+                </div>
+
+                <!-- Img 5 -->
+                <div class="gallery-card group relative rounded-xl overflow-hidden bg-white border border-slate-200 shadow-sm cursor-pointer" data-gal-cat="mold" onclick="openLightbox('https://lh3.googleusercontent.com/gg/AJWXcNeAGkpRT4US9-KYSAdMeSBK9leQ8cnUus6yF4P05km3jAaSWCw1BKeZY-I8N_jlDE4W59_qpdoX-6HYFT8IcZVNfThqIv7OM-nUiD8IQjxK89SeQ_Pjipef-6VbM6W090g3w7TUcG37E99pIAr5JOl6wNzwOjkGUTTZ9W71W245VffApPsxHp4X6JZhrSD7zeeEdZWprvvpaJXtVkG68IklA8KW0pPfRspJZVQGjJx3xgzSKnw1_bmiNVXE5fUXM10feCeTubLS8y3kQGF1QBOERQmFpoc2ag=s0', 'Alinhamento e colagem técnica de blocos usinados na oficina de fabricação.')">
+                    <img src="https://lh3.googleusercontent.com/gg/AJWXcNeAGkpRT4US9-KYSAdMeSBK9leQ8cnUus6yF4P05km3jAaSWCw1BKeZY-I8N_jlDE4W59_qpdoX-6HYFT8IcZVNfThqIv7OM-nUiD8IQjxK89SeQ_Pjipef-6VbM6W090g3w7TUcG37E99pIAr5JOl6wNzwOjkGUTTZ9W71W245VffApPsxHp4X6JZhrSD7zeeEdZWprvvpaJXtVkG68IklA8KW0pPfRspJZVQGjJx3xgzSKnw1_bmiNVXE5fUXM10feCeTubLS8y3kQGF1QBOERQmFpoc2ag=s0" alt="Colagem de Blocos" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-2.5 bg-white border-t border-slate-100">
+                        <span class="block text-[11px] font-heading font-bold text-slate-800 truncate">Ajuste &amp; Colagem na Oficina</span>
+                        <span class="block text-[10px] font-mono text-slate-500">Montagem do molde</span>
+                    </div>
+                </div>
+
+                <!-- Img 6 -->
+                <div class="gallery-card group relative rounded-xl overflow-hidden bg-white border border-slate-200 shadow-sm cursor-pointer" data-gal-cat="mold" onclick="openLightbox('https://lh3.googleusercontent.com/gg/AJWXcNf-4FqC-ti660am_sbr-VN6MpLd7V7FVH0kCIl_urR4ruN9yg5rVP3p0oCt6pqlJqXSaWm537TpuFkyD-q4be-ubX0-MiQ1kOIEW-Tce276unFVnkV1ldcuKWVlh2YvvoAX8H4M4c6MPbhpHMMHlfGaFTWE5HiCfdxICHj91Kb8fNJcfgz1FrLsTZijUKw_bOEuV9pzdIUcTjUirXTHLDI6wCeWsP1yuh7BhNIUmW1wA7Be2lBaWk0B03L8JrchTlj5Y-843n80gjhYulY9ELHjre8lV2O6oNI=s0', 'Ajuste final e montagem de estrutura na bancada de trabalho.')">
+                    <img src="https://lh3.googleusercontent.com/gg/AJWXcNf-4FqC-ti660am_sbr-VN6MpLd7V7FVH0kCIl_urR4ruN9yg5rVP3p0oCt6pqlJqXSaWm537TpuFkyD-q4be-ubX0-MiQ1kOIEW-Tce276unFVnkV1ldcuKWVlh2YvvoAX8H4M4c6MPbhpHMMHlfGaFTWE5HiCfdxICHj91Kb8fNJcfgz1FrLsTZijUKw_bOEuV9pzdIUcTjUirXTHLDI6wCeWsP1yuh7BhNIUmW1wA7Be2lBaWk0B03L8JrchTlj5Y-843n80gjhYulY9ELHjre8lV2O6oNI=s0" alt="Montagem na Bancada" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-2.5 bg-white border-t border-slate-100">
+                        <span class="block text-[11px] font-heading font-bold text-slate-800 truncate">Molde Ajustado na Bancada</span>
+                        <span class="block text-[10px] font-mono text-slate-500">Conferência dimensional</span>
+                    </div>
+                </div>
+
+                <!-- Img 7 -->
+                <div class="gallery-card group relative rounded-xl overflow-hidden bg-white border border-slate-200 shadow-sm cursor-pointer" data-gal-cat="mold" onclick="openLightbox('https://lh3.googleusercontent.com/gg/AJWXcNdvrDztcNQBjkgvfr_dzNZW-JsJ0i34D6Uiop87uAAQYLWlYZbdvyq96SbBcIrf_7Z_MlvsWcwrhi2FOCq6q0V0rjMI59Q3LaJ5Snf18M5S01Q24ZWEc9Alfeb5jW89Uwpek_1wwuJkxgz5D-Ziv3TjiN33eivx7Xllt04RpTxc0M4ffV1P9hxHvhv5253W9h3WZ26Lzz77QI-gl5oAmbTPhUIFWx6WRj1U-vvAAG8o01d8XNEY9zE7JeCCRYBXiaF5pnTcJ-TrnwRqpvfakwFci_F9ZzjMDQ=s0', 'Molde de superfície orgânica tratada e preparada para laminação.')">
+                    <img src="https://lh3.googleusercontent.com/gg/AJWXcNdvrDztcNQBjkgvfr_dzNZW-JsJ0i34D6Uiop87uAAQYLWlYZbdvyq96SbBcIrf_7Z_MlvsWcwrhi2FOCq6q0V0rjMI59Q3LaJ5Snf18M5S01Q24ZWEc9Alfeb5jW89Uwpek_1wwuJkxgz5D-Ziv3TjiN33eivx7Xllt04RpTxc0M4ffV1P9hxHvhv5253W9h3WZ26Lzz77QI-gl5oAmbTPhUIFWx6WRj1U-vvAAG8o01d8XNEY9zE7JeCCRYBXiaF5pnTcJ-TrnwRqpvfakwFci_F9ZzjMDQ=s0" alt="Molde com Superfície Orgânica" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-2.5 bg-white border-t border-slate-100">
+                        <span class="block text-[11px] font-heading font-bold text-slate-800 truncate">Molde de Atração Recreativa</span>
+                        <span class="block text-[10px] font-mono text-slate-500">Superfície curva tratada</span>
+                    </div>
+                </div>
+
+                <!-- Img 8 -->
+                <div class="gallery-card group relative rounded-xl overflow-hidden bg-white border border-slate-200 shadow-sm cursor-pointer" data-gal-cat="mold" onclick="openLightbox('https://lh3.googleusercontent.com/gg-dl/AHiVA1n4fVLuq7TOcB5d7TD0-0Xqz0ftMWOSEeyU-kFyKDaRvbsi-cu1oQlKhf44BVCTXBr7uFUR-O4UCJ6bwC0k_eXc_e3JtUpJaImJVlcHFPsGHLQeZ6xEyFjd3cin4TJ0gBOZLiL2f95f7rG5By_I-zr0hvaOp9vztk4bu-fhCqZuq65Txg', 'Estrutura final de molde montado com travamento para expedição.')">
+                    <img src="https://lh3.googleusercontent.com/gg-dl/AHiVA1n4fVLuq7TOcB5d7TD0-0Xqz0ftMWOSEeyU-kFyKDaRvbsi-cu1oQlKhf44BVCTXBr7uFUR-O4UCJ6bwC0k_eXc_e3JtUpJaImJVlcHFPsGHLQeZ6xEyFjd3cin4TJ0gBOZLiL2f95f7rG5By_I-zr0hvaOp9vztk4bu-fhCqZuq65Txg" alt="Molde Concluído Expedição" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-2.5 bg-white border-t border-slate-100">
+                        <span class="block text-[11px] font-heading font-bold text-slate-800 truncate">Estrutura Pronta na Fábrica</span>
+                        <span class="block text-[10px] font-mono text-slate-500">Travamento de transporte</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- LOGOS DE CLIENTES ATENDIDOS -->
+    <section id="clientes" class="py-16 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <span class="block text-center text-xs font-mono text-slate-500 uppercase tracking-wider mb-8 font-semibold">
+                Marcas e Clientes Atendidos no Histórico Profissional
+            </span>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 items-center">
+                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 flex items-center justify-center h-16 hover:border-sky-300 transition-colors">
+                    <img src="https://lh3.googleusercontent.com/gg/AJWXcNeVbHfGbkqzFYJFK2m8WVvtqU16JGWa0UeqbfG_lAf4daAJAaWYxJzb_VFxH2SCwl_4WTTD1qoC-k0-Biw1Uij1GsLOxZWh0X5P-QxbNMY4h4W5Tv5WqXuVjENwsyjndE08TikfudBoUlErybdKY08-FkrbtjeCEQT0nosYBdLR5cXLIWunNYQaBLJgLNFSH7_6Z0TQnx0S5SfkigCpITJytsjSqw6JuKOBvbjYkty3_TSHUJyDQ1Q50gAl4qvJqiYGKtFmeGkRcqDXhJR46QdQ3C8RrMua4Q=s0" alt="Azimut Yachts" class="max-h-8 max-w-full object-contain">
+                </div>
+                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 flex items-center justify-center h-16 hover:border-sky-300 transition-colors">
+                    <img src="https://lh3.googleusercontent.com/gg/AJWXcNem0EnZoF9cGv3uvX0GdY622IwjHl_h1pyr0TxWbww6YdErMpgkrBunGuzckZOJekw6LMI29kwZSt8OTUTE3iqrCCzBorH2Z4t5P3fO883S7DsA6EXgf0S30Svyr5gXEzMbvWmyZooGx9hNSxoTLN38t98GzXja6Tb61gk6fEvP_Z3EhlykdPZpX-xE35MThGXbnLdDnlDceOe-0bpm3AzI0q6LaN0x96wPh_KzH69x97AtjVGz0crDtHSoz4GBj7uEGjohclq_53tIxDThFRNqHIxAAXdK9VI=s0" alt="Fibrafort" class="max-h-8 max-w-full object-contain">
+                </div>
+                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 flex items-center justify-center h-16 hover:border-sky-300 transition-colors">
+                    <img src="https://lh3.googleusercontent.com/gg/AJWXcNe5u6EDWmE01pm70sx7WwpjEd4KwXDxOLcOOINlhAPzEq-LNc0W_wFHXSIUeJIiJoEDrXkB31GNxNiPMG_ZRkCDAqt_Wc0Wc70DLuS4ezeYNkqwtcM3vxampEy4Z1J9UQat_6sMzYpUT5bErQ-IwduZ78ZNfjDGbUncIqa5XG08JFFdIWi6jzzHE9olt0GRD2-HNna4gtfVIfX2BYoL5OIOu-IgsvKga2iiNGG-wba6SQntTNEuAcfYeXMw06eo-Zfbj9lWKTY8hiTFDyXJ6IMRlnlEZU4o98s=s0" alt="NX Boats" class="max-h-8 max-w-full object-contain">
+                </div>
+                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 flex items-center justify-center h-16 hover:border-sky-300 transition-colors">
+                    <img src="https://lh3.googleusercontent.com/gg/AJWXcNeTBjsz-Cz9_Pf3WraGyYrom4yDNlB6cb_4pBD1aBH_M-YrIPT68kSHL_rP_AvZ7IkQyYZTp619TQ6ilchShaJPPUDbsQb_l_ELEfQGjfYfaYUcvdleJ7ff9oyCKyoV8CN4ReousYvNSJuilvcoDvpDjiJtqpYK-KKLaykdBIPjaRoRSlD7tZLUHjWRsNCk0g4uJyvZCAQ7bX7bv_vO6wj3raGbz9eGPMTXT6AgmZMnLGa1lxPZP1uZwHMvfxD1e7WIBooVG8fiS9-xejgklnEVLspmiZ5ZCcI=s0" alt="Intermarine" class="max-h-8 max-w-full object-contain">
+                </div>
+                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 flex items-center justify-center h-16 hover:border-sky-300 transition-colors">
+                    <img src="https://lh3.googleusercontent.com/gg/AJWXcNcWn9C1wxeM3-at-dX8fiVdc3dfe8CRV9P1ydk8RuvXv7_-dFp3HmX4kYn-gJIVrIikS2ZbHENYOi3CXFK8P8AV0MasBqmeUdYZNRlMo4QIZLhQIew_bOT2ahviSHgFvhuKk0gK3Dhc1xilU2b-vdPhdrZlwbf4ANygbPJjUYJKAkNXX7MUJdViD2k2Pa_EKQWPNcsFdDLpEpjUmgruCxA6bhJUqONXcneicUxtgKp71Wt6GXoNZ-MJdgk2AOtODl81pLcZXio70KxwVqg9E0aFSs3ju8JAPw=s0" alt="Quest" class="max-h-8 max-w-full object-contain filter brightness-50">
+                </div>
+                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 flex items-center justify-center h-16 hover:border-sky-300 transition-colors">
+                    <img src="https://lh3.googleusercontent.com/gg/AJWXcNcBwt1OPneVK6HOzLswXZ2vgsZSDc8Hbg-SPBV8tthSD4uhzbJ2X2hAJ0c_ti0lZCwkEL0rDzaGr1tjBnCy4ooDr5ZMZUwtcQAnkhxpZELA7-TfIszZKwBZtQvsqPE0nO6ib-wQZB7W8PFCV9AvISRsUctLrRWq8JGaZS5lN_uYgEMy4GW4UaOg1_crmXwa4auQN5BANuwMzZgc4bn4N-Hfp3vr-4lyMXN06CsdP5wA4YmxcA5zFrCLmV5pZQF9I-fMgM9enoKCyxw6SBAe1FSF2qU7s8Eunw=s0" alt="Overjet" class="max-h-8 max-w-full object-contain">
+                </div>
+                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 flex items-center justify-center h-16 hover:border-sky-300 transition-colors">
+                    <img src="https://lh3.googleusercontent.com/gg/AJWXcNfsh1bO3DIcwbjeblp-Ec2BIkSeBR3eHVCagxrg7_-uj3HjHJTD7DL__xQcTeys2f0NLdVRmJLGKdPegR7tBPKCW2bYvkKZ7_TLqA6Xi9OhMWYyo6U1tUKXKMKW12eliJ5iHeANR4BgDHUNkIOQ7v_7y7xhuPswWGcHKRMWOKftrNj0Rq8XWzDHCRRfbkqylAHhHgqg7H8eU5aQF7LqPQ214g05q9Rs7rtisUxvjL-dC57uC-SaZyGHrjXE5Pif_l79u5K7ErSWjz3g1taULGpj1R-DNbMziWA=s0" alt="DAF" class="max-h-8 max-w-full object-contain">
+                </div>
+                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 flex items-center justify-center h-16 hover:border-sky-300 transition-colors">
+                    <img src="https://lh3.googleusercontent.com/gg/AJWXcNe_SbNoVX5GW84stkRn2aR0t8rwKjYDOFX2SBeZMkUJvD2bggjcRjc1otHqYJ5A1tmF3b1Zn8VEMfk1aH66NE2BT2nGLCvPjM-SRQ35Jn3MGOBKd2DHelRqNxmHH2NWpR4fil27OZyIiLXDpvW_eY5qRpCFaji30SqxJH45P-zbYNQpkx5y2SKeOCnF43hmNqA7dTMXD6Abo5fP6Krft1YmI2X8fb9pArDRYpaHecbNaxIzZprmckARZSVmlqw1GX3FXF_F0Lfy22sKSHCuMRFay7aoYj2ZPAI=s0" alt="Okean" class="max-h-8 max-w-full object-contain">
+                </div>
+                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 flex items-center justify-center h-16 hover:border-sky-300 transition-colors">
+                    <img src="https://lh3.googleusercontent.com/gg/AJWXcNc-D4hQD6WW47Fuj_lO64WY2KiS3ev7q71o7oY8ct1a-X5rTz5mAh-BFYZWjqlOTmElMyT325QkEZyV3IcAdMrMq0Kcnou9loPlsQM1caLFZI-UdwfPzJA2OxPh_dPL36DgtQXikWnqHwukRgsRzuP67_97STg4HJ8J48KqJLxVQdEcZBOrHjatNJ6_r3iXyrivl6oYCSP8GP3xib67U9-krvCgfICieR_PZQ5SO9wgReo0t8HxdysrubHVM_AsU52K-gw7J1ZyV91ViK6i982LkzJQdVvJaZ4=s0" alt="Magna" class="max-h-8 max-w-full object-contain">
+                </div>
+                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 flex items-center justify-center h-16 hover:border-sky-300 transition-colors">
+                    <img src="https://lh3.googleusercontent.com/gg-dl/AHiVA1kZYB6YPcYwehcqbUlXUKBK8ps9QVWn1MznmBbHr1C_C1AoeLZR9WcoKNcYvF-hyxHrZq6mv6cEpFMh5JknBFHcBDnlBMCX0Hc2b-6DlzIfflV9JnGvacNc9FnNmRwc9oYf89x1RcU1c0ZovmI8ryrjq2zhFZeR6hhMmKxcYcaulOMHkQ" alt="PLM" class="max-h-8 max-w-full object-contain">
+                </div>
+                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 flex items-center justify-center h-16 hover:border-sky-300 transition-colors">
+                    <img src="https://lh3.googleusercontent.com/gg-dl/AHiVA1lnhr0GmPZ4pqfpvEUb8bU9gTWm9T3L4QvplV5Y4gsxFuPIxZ8sclHNS6P7lW3tqOxaKefsG5BtYqR04nVGuY0OGbybJuRncrOofz-RGV5VG39XXAeDiIPsEcO-C_J9cceC6aOzZ-kfA5dUXfLBL54jByC-ap_SUZ7un34YFV1DUWe6iw" alt="Suplast / Sulplast" class="max-h-8 max-w-full object-contain">
+                </div>
+                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 flex items-center justify-center h-16 hover:border-sky-300 transition-colors">
+                    <img src="https://lh3.googleusercontent.com/gg/AJWXcNfnB8iWf1iQh2Q3qI6zG8zYv8Kz-P43j4p8Y0R4H-j_mZ1hK1C0y4B5X1Y5x-v0E0G1lY-0G2m4N8h0L6F8H1J3K2P5Q0W7S9T_U2V3W0X=s0" alt="Ventura Marine" class="max-h-8 max-w-full object-contain">
+                </div>
+                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 flex items-center justify-center h-16 hover:border-sky-300 transition-colors">
+                    <img src="https://lh3.googleusercontent.com/gg/AJWXcNfbYm8gP0QcM2sN9K4x3B1vL5R9A7pZ1C0V_9hG1E8J5D8O4F2R7K9S_2T4Y=s0" alt="NHS" class="max-h-8 max-w-full object-contain">
+                </div>
+                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 flex items-center justify-center h-16 hover:border-sky-300 transition-colors font-mono font-bold text-[11px] text-slate-700 text-center">
+                    EMBRASAT
+                </div>
+                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 flex items-center justify-center h-16 hover:border-sky-300 transition-colors font-mono font-bold text-[11px] text-slate-700 text-center">
+                    BUSSCAR
+                </div>
+                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 flex items-center justify-center h-16 hover:border-sky-300 transition-colors font-mono font-bold text-[11px] text-slate-700 text-center">
+                    PROGRESSO EQP
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION HOME OFFICE / WORK ENVIRONMENT -->
+    <section id="remote" class="py-16 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl">
+                <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-mono text-xs font-bold uppercase">Atuação Remota</span>
+                <h2 class="text-2xl sm:text-3xl font-heading font-bold text-slate-900 mt-2 mb-3">
+                    Estrutura Consolidada de Trabalho Remoto (4 Anos)
+                </h2>
+                <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                    Vivência prática e contínua atuando 100% à distância há 4 anos. Ambiente próprio de Home Office adaptado para alta produtividade, comunicação assíncrona ágil e entregas técnicas sem atrito.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-lg">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-slate-900 text-sm">4 Anos em Home Office</h3>
+                    <p class="text-xs text-slate-600">Autonomia total no cumprimento de cronogramas, organização de tarefas e alinhamento de entregas.</p>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                    <div class="w-10 h-10 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-lg">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-slate-900 text-sm">Estação Técnica Dedicada</h3>
+                    <p class="text-xs text-slate-600">Hardware configurado para execução pesada de SolidWorks, Rhinoceros, IDEs de desenvolvimento e suporte remoto.</p>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                    <div class="w-10 h-10 rounded-xl bg-slate-200 text-slate-700 flex items-center justify-center font-bold text-lg">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-slate-900 text-sm">Comunicação Clara e Assíncrona</h3>
+                    <p class="text-xs text-slate-600">Facilidade de adaptação a canais corporativos (Slack, Teams, WhatsApp, Trello) e reuniões técnicas objetivas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-20 bg-slate-900 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 font-mono text-xs font-bold uppercase border border-emerald-500/30">Oportunidades &amp; Projetos</span>
+                    
+                    <h2 class="text-3xl sm:text-4xl font-heading font-extrabold text-white tracking-tight">
+                        Fale com Gabriel Carvalho Santos
+                    </h2>
+                    
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Disponível para contratação, projetos consultivos e oportunidades de atuação em modelagem CAD/SolidWorks, moldes CNC em madeira/MDF e infraestrutura de TI.
+                    </p>
+
+                    <div class="space-y-3 font-mono text-xs pt-2">
+                        <div class="flex items-center gap-3 text-slate-300">
+                            <div class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-emerald-400">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <span>gabrielcarvalhosantos@gmail.com</span>
+                        </div>
+
+                        <div class="flex items-center gap-3 text-slate-300">
+                            <div class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-sky-400">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <span>(16) 98122-1827</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 bg-white/5 border border-white/10 p-6 sm:p-8 rounded-2xl backdrop-blur">
+                    <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Seu Nome / Empresa</label>
+                            <input type="text" required placeholder="Digite seu nome completo" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-slate-400 text-sm focus:outline-none focus:border-sky-400">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono uppercase text-slate-300 mb-1">E-mail para Retorno</label>
+                            <input type="email" required placeholder="seuemail@empresa.com" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-slate-400 text-sm focus:outline-none focus:border-sky-400">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Mensagem / Detalhes da Proposta</label>
+                            <textarea rows="4" required placeholder="Descreva brevemente sua necessidade em CAD/Moldes ou Infraestrutura de TI..." class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-slate-400 text-sm focus:outline-none focus:border-sky-400"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-white font-heading font-bold text-sm uppercase tracking-wider transition-all shadow-md">
+                            Enviar Mensagem
+                        </button>
+
+                        <div id="contactSuccess" class="hidden p-3 rounded bg-emerald-500/20 text-emerald-300 text-xs font-mono text-center border border-emerald-500/30">
+                            Mensagem registrada com sucesso! Retornarei em breve.
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="mt-16 pt-8 border-t border-white/10 text-center font-mono text-xs text-slate-500">
+                &copy; Gabriel Carvalho Santos • Portfólio Unificado de Engenharia CAD, Moldes CNC &amp; TI.
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightboxModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4" onclick="closeLightbox()">
+        <div class="max-w-4xl w-full bg-slate-900 rounded-2xl overflow-hidden border border-white/20 relative" onclick="event.stopPropagation()">
+            <button onclick="closeLightbox()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/60 text-white hover:bg-rose-600 transition-colors flex items-center justify-center">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <img id="lightboxImg" src="" alt="Ampliada" class="w-full max-h-[75vh] object-contain bg-black">
+            <div class="p-4 bg-slate-900 border-t border-white/10 text-white">
+                <p id="lightboxCaption" class="text-xs sm:text-sm font-mono text-slate-300 leading-relaxed">Legenda do processo técnico.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- DETAIL MODAL FOR IT CARDS -->
+    <div id="detailModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4 relative border border-slate-200">
+            <button onclick="closeDetailModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center font-bold text-lg">
+                <i class="fa-solid fa-circle-info"></i>
+            </div>
+            <h3 id="modalDetailTitle" class="text-lg font-heading font-bold text-slate-900">Título</h3>
+            <p id="modalDetailDesc" class="text-xs text-slate-600 leading-relaxed">Descrição técnica detalhada.</p>
+            <div class="pt-2 text-right">
+                <button onclick="closeDetailModal()" class="px-4 py-2 rounded-lg bg-slate-900 text-white text-xs font-semibold">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT CONTROLLERS -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        function filterMainCategory(cat) {
+            document.querySelectorAll('#heroFilters .hero-filter-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-slate-900', 'text-white');
+                btn.classList.add('bg-white', 'text-slate-600');
+            });
+
+            if(event && event.target) {
+                event.target.classList.add('active', 'bg-slate-900', 'text-white');
+                event.target.classList.remove('bg-white', 'text-slate-600');
+            }
+
+            const sections = document.querySelectorAll('.main-category-section');
+            sections.forEach(sec => {
+                if (cat === 'all' || sec.dataset.mainCat === cat) {
+                    sec.style.display = 'block';
+                } else {
+                    sec.style.display = 'none';
+                }
+            });
+        }
+
+        const workflowSteps = [
+            {
+                step: 1,
+                badge: 'ETAPA 01 / 05',
+                title: '01. Recebimento e Diagnóstico Geométrico no Rhinoceros',
+                desc: 'Recepção do arquivo tridimensional original. Análise detalhada das superfícies, inspeção de bordas descontinuas e identificação de gaps na malha matemática.',
+                label: 'Inspeção de Malha e Superfícies',
+                icon: 'fa-cube'
+            },
+            {
+                step: 2,
+                badge: 'ETAPA 02 / 05',
+                title: '02. Conversão e Reparo no SolidWorks',
+                desc: 'Importação para o ambiente SolidWorks. Tratamento de superfícies descontinuas, costura de cascas soltas e correção geométrica rigorosa.',
+                label: 'Costura e Reparo CAD',
+                icon: 'fa-wrench'
+            },
+            {
+                step: 3,
+                badge: 'ETAPA 03 / 05',
+                title: '03. Fechamento Estanque e Solidificação',
+                desc: 'Fechamento completo da casca para conversão em modelo sólido 100% estanque, garantindo integridade para operações booleanas.',
+                label: 'Sólido Estanque no SolidWorks',
+                icon: 'fa-box'
+            },
+            {
+                step: 4,
+                badge: 'ETAPA 04 / 05',
+                title: '04. Seccionamento e Divisão dos Blocos',
+                desc: 'Divisão do sólido em seções e blocos técnicos. Dimensionamento para maximizar o aproveitamento e encaixe na mesa.',
+                label: 'Divisão em Blocos de Usinagem',
+                icon: 'fa-cubes-stacked'
+            },
+            {
+                step: 5,
+                badge: 'ETAPA 05 / 05',
+                title: '05. Usinagem e Montagem do Molde/Protótipo',
+                desc: 'Desbaste e acabamento dos blocos nos centros de usinagens CNC, seguido da colagem técnica, alinhamento e montagem na oficina.',
+                label: 'Blocos',
+                icon: 'fa-industry'
+            }
+        ];
+
+        function setWorkflowStep(stepNum) {
+            const data = workflowSteps.find(s => s.step === stepNum);
+            if (!data) return;
+
+            document.querySelectorAll('#workflowStepper .step-btn').forEach((btn, idx) => {
+                if (idx + 1 === stepNum) {
+                    btn.className = 'step-btn active p-3 rounded-xl border text-left transition-all bg-sky-500 text-white border-sky-500';
+                } else {
+                    btn.className = 'step-btn p-3 rounded-xl border border-slate-200 text-left transition-all bg-white text-slate-700 hover:bg-slate-50';
+                }
+            });
+
+            document.getElementById('stepBadge').innerText = data.badge;
+            document.getElementById('stepTitle').innerText = data.title;
+            document.getElementById('stepDesc').innerText = data.desc;
+            document.getElementById('stepTechnicalLabel').innerText = data.label;
+            document.getElementById('stepIcon').className = `fa-solid ${data.icon} text-5xl text-sky-500`;
+        }
+
+        function filterGallery(cat) {
+            document.querySelectorAll('#galleryFilters .gal-filter-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-slate-900', 'text-white');
+                btn.classList.add('bg-white', 'text-slate-600');
+            });
+
+            if(event && event.target) {
+                event.target.classList.add('active', 'bg-slate-900', 'text-white');
+                event.target.classList.remove('bg-white', 'text-slate-600');
+            }
+
+            const cards = document.querySelectorAll('#galleryGrid .gallery-card');
+            cards.forEach(card => {
+                if (cat === 'all' || card.dataset.galCat === cat) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function openLightbox(src, caption) {
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightboxCaption').innerText = caption;
+            document.getElementById('lightboxModal').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxModal').classList.add('hidden');
+        }
+
+        function openDetailModal(title, desc) {
+            document.getElementById('modalDetailTitle').innerText = title;
+            document.getElementById('modalDetailDesc').innerText = desc;
+            document.getElementById('detailModal').classList.remove('hidden');
+        }
+
+        function closeDetailModal() {
+            document.getElementById('detailModal').classList.add('hidden');
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const msg = document.getElementById('contactSuccess');
+            msg.classList.remove('hidden');
+            e.target.reset();
+            setTimeout(() => {
+                msg.classList.add('hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
